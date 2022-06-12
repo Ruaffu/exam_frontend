@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import facade from "../apiFacade";
 import "../styles/LoginPage.css";
 
-function LogIn({ login, creatingUser}) {
+function LogIn({ login, error, creatingUser}) {
   const init = { username: "", password: "" };
   const [loginCredentials, setLoginCredentials] = useState(init);
 
@@ -22,6 +22,7 @@ function LogIn({ login, creatingUser}) {
         <form onChange={onChange} >
           <input type="text" placeholder="User Name" id="username" />
           <input type="password" placeholder="Password" id="password" />
+          <div style={{ color: 'red' }}>{error}</div>
           <button className="login-button" onClick={performLogin}>Login</button>
           <button className="login-button" onClick={creatingUser}>Create</button>
         </form>
@@ -79,6 +80,7 @@ function LoggedIn() {
 
 function LoginPage( { loggedIn, setLoggedIn } ) {
   const [creatingUser, setCreatingUser] = useState(false);
+  const [error, setError] = useState(null);
 
   const logout = () => {
     facade.logout()
@@ -86,7 +88,13 @@ function LoginPage( { loggedIn, setLoggedIn } ) {
   }
   const login = (user, pass) => {
     facade.login(user, pass)
-      .then(res => setLoggedIn(true));
+      .then(res => setLoggedIn(true)).catch((err) =>{
+        if (err.status == 403) {
+          setError('Wrong username or Password')
+        }else{
+          setError('Something went wrong')
+        }
+      });
   }
 
   function createUser () {
@@ -99,7 +107,7 @@ function LoginPage( { loggedIn, setLoggedIn } ) {
 
   return (
     <main>
-      {!loggedIn ? (!creatingUser? (<LogIn login={login} creatingUser={createUser}/>) : (<CreateUser create={create}/>)) :
+      {!loggedIn ? (!creatingUser? (<LogIn login={login} error={error} creatingUser={createUser}/>) : (<CreateUser create={create}/>)) :
         (<div>
           <LoggedIn />
           <button onClick={logout}>Logout</button>
