@@ -2,10 +2,11 @@ import React from 'react'
 import { Outlet, Link, NavLink } from "react-router-dom";
 
 function logout() {
+    setLoggedIn(false)
     apiFacade.logout();
 }
 
-const Header = ( { loggedIn } ) => {
+const Header = ( { loggedIn, isAdmin, setLoggedIn } ) => {
   return (
     <div>
       <header>
@@ -19,6 +20,10 @@ const Header = ( { loggedIn } ) => {
                 <NavLink className="nav-button" to="/" onClick={logout}>Logout</NavLink>
               : 
               <NavLink className="nav-button" to="login">Login</NavLink>
+          }
+            {
+            loggedIn && isAdmin &&
+            <NavLink className="nav-link" to="/admin">Admin page</NavLink>
           }
 
 
