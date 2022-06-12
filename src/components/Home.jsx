@@ -9,14 +9,14 @@ const Home = () => {
           <div className='image-container'>
             <img style={{ width: "100%" }} src={cat} />
             <div className='centered'>
-              <h2>Cat facts!</h2>
+              <h2>Title!!!</h2>
             </div>
           </div>
           <div className='home-section'>
             <h2>
-              blabakabal
+              text heading
             </h2>
-            <h3>dshfoidhfhdsoihfodhsfodusfh</h3>
+            <h3>text</h3>
           </div>
         </div>
       </div>
