@@ -19,13 +19,12 @@ export default function App() {
   return (
     <div>
       <BrowserRouter>
-      <Header loggedIn={loggedIn} isAdmin={isAdmin} setLoggedIn={setLoggedIn}/>
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
     <Routes>
         <Route path="/" element={<Home/>}>
         </Route>
         <Route path="login" element={<LoginPage loggedIn={loggedIn} setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/>} />
-        <Route path="admin" element={<Admin isAdmin={isAdmin}/>}/>
-        <Route path="cat" element={<Cat/>} />
+        <Route path="admin" element={<Admin isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>}/>
         <Route path="unauthorized" element={<Unauthorized/>} />
         <Route path="*" element={<NoMatch/>} />
     </Routes>

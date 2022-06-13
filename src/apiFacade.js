@@ -1,4 +1,5 @@
 import URL from "./settings";
+import jwtDecode from "jwt-decode";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -15,6 +16,15 @@ function apiFacade() {
   const getToken = () => {
     return localStorage.getItem('jwtToken')
   }
+
+  const decodeToken = () => {
+    const token = getToken()
+    const decodeToken = token;
+    const decode = jwtDecode(decodeToken)
+    setToken(token);
+    return decode
+  }
+
   const loggedIn = () => {
     const loggedIn = getToken() != null;
     return loggedIn;
@@ -22,7 +32,6 @@ function apiFacade() {
   const logout = () => {
     localStorage.removeItem("jwtToken");
   }
-
 
   const login = (user, password) => {
     const options = makeOptions("POST", true, { username: user, password: password });
@@ -46,6 +55,19 @@ function apiFacade() {
     return fetch(URL + "/api/info/newuser", options)
       .then(handleHttpErrors)
       .then(res => { setToken(res.token) })
+  }
+
+  const updatetemplate = (boatID,boatInfo) => {
+    const options = makeOptions("PUT", true, boatInfo); //True add's the token
+    console.table(boatInfo);
+    return fetch(URL + `/api/boats/${boatID.id}/update`, options)
+      .then(handleHttpErrors)
+      .then(res => { setToken(res.token) })
+  }
+
+  const deleteTemplate = (id) => {
+    const options = makeOptions("DELETE", true); //True add's the token
+    return fetch(URL + `/api/boats/${id.boatID}/delete`, options).then(handleHttpErrors);
   }
 
   const makeOptions = (method, addToken, body) => {
@@ -74,6 +96,9 @@ function apiFacade() {
     fetchUserInfo,
     fetchCat,
     create,
+    decodeToken,
+    updatetemplate,
+    deleteTemplate,
   }
 }
 const facade = apiFacade();

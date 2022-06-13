@@ -90,8 +90,10 @@ function LoginPage( { loggedIn, setLoggedIn, setIsAdmin } ) {
 
   const logout = () => {
     facade.logout()
+    console.log("nonon");
     setLoggedIn(false)
     setIsAdmin(false)
+    
   }
   const login = (user, pass) => {
     facade.login(user, pass)

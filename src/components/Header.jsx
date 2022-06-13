@@ -1,32 +1,37 @@
 import React from 'react'
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
-function logout() {
-    setLoggedIn(false)
-    apiFacade.logout();
+import "../styles/Header.css";
+import facade from '../apiFacade';
+
+function logout({setLoggedIn, setIsAdmin}) {
+  facade.logout();
+  setLoggedIn(false)
+  setIsAdmin(false)
+  window.location.reload();
 }
 
-const Header = ( { loggedIn, isAdmin, setLoggedIn } ) => {
+const Header = () => {
   return (
     <div>
       <header>
         <nav>
-          <NavLink className="nav-link" to="/">Home</NavLink>
-          <NavLink className="nav-link" to="cat">Generate</NavLink>
-
-
+          <div className='left'>
+          <NavLink  to="/">Home</NavLink>
           {
-            loggedIn ?
-                <NavLink className="nav-button" to="/" onClick={logout}>Logout</NavLink>
+            facade.getToken() != undefined && facade.decodeToken().roles  == "admin"  &&
+            <NavLink  to="/admin">Admin page</NavLink>
+          }
+          </div>
+<div className='right'>
+          {
+            facade.getToken() != undefined ?
+           
+                <NavLink to="/" onClick={logout}>Logout</NavLink>
               : 
-              <NavLink className="nav-button" to="login">Login</NavLink>
+              <NavLink to="login">Login</NavLink>
           }
-            {
-            loggedIn && isAdmin &&
-            <NavLink className="nav-link" to="/admin">Admin page</NavLink>
-          }
-
-
+           </div>
         </nav>
       </header>
       <Outlet />
