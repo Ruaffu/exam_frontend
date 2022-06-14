@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const NoMatch = () => {
   return (
     <main style={{ padding: "1rem" }}>
-          <p>There's nothing here!</p>
-        </main>
-  )
-}
+      <p>There's nothing here!</p>
+    </main>
+  );
+};
 
-export default NoMatch
+export default NoMatch;

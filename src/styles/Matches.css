@@ -120,6 +120,10 @@
     
   }
   
+  label {
+    display:block;
+}
+  
   .button {
     margin-top: 10px;
     background-color: rgb(47, 201, 47);
