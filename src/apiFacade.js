@@ -54,6 +54,37 @@ function apiFacade() {
     return fetch(URL + "/api/matches/all", options).then(handleHttpErrors);
   }
 
+  const fetchByPlayerId = (id) => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(URL + `/api/matches/${id}/play`, options).then(handleHttpErrors);
+  }
+
+  const fetchByLocationId = (id) => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(URL + `/api/matches/${id}/location`, options).then(handleHttpErrors);
+  }
+
+  const createLocation = (locationInfo) => {
+    const options = makeOptions("POST", true, locationInfo); //True add's the token
+    return fetch(URL + "/api/admin/location", options)
+      .then(handleHttpErrors)
+      .then(res => { setToken(res.token) })
+  }
+
+  const createMatch = (matchInfo) => {
+    const options = makeOptions("POST", true, matchInfo); //True add's the token
+    return fetch(URL + "/api/admin/match", options)
+      .then(handleHttpErrors)
+      .then(res => { setToken(res.token) })
+  }
+
+  const createPlayer = (playerInfo) => {
+    const options = makeOptions("POST", true, playerInfo); //True add's the token
+    return fetch(URL + "/api/admin/player", options)
+      .then(handleHttpErrors)
+      .then(res => { setToken(res.token) })
+  }
+
   const create = (username, password) => {
     const options = makeOptions("POST", true, { userName: username, userPass: password }); //True add's the token
     console.log(username + " " + password);
@@ -62,17 +93,16 @@ function apiFacade() {
       .then(res => { setToken(res.token) })
   }
 
-  const updatetemplate = (boatID,boatInfo) => {
-    const options = makeOptions("PUT", true, boatInfo); //True add's the token
-    console.table(boatInfo);
-    return fetch(URL + `/api/boats/${boatID.id}/update`, options)
+  const updateMatch = (matchID,matchInfo) => {
+    const options = makeOptions("PUT", true, matchInfo); //True add's the token
+    return fetch(URL + `/api/admin/${matchID}/match`, options)
       .then(handleHttpErrors)
       .then(res => { setToken(res.token) })
   }
 
-  const deleteTemplate = (id) => {
+  const deletePlayer = (id) => {
     const options = makeOptions("DELETE", true); //True add's the token
-    return fetch(URL + `/api/boats/${id.boatID}/delete`, options).then(handleHttpErrors);
+    return fetch(URL + `/api/admin/${id}/delete`, options).then(handleHttpErrors);
   }
 
   const makeOptions = (method, addToken, body) => {
@@ -102,9 +132,14 @@ function apiFacade() {
     fetchCat,
     create,
     decodeToken,
-    updatetemplate,
-    deleteTemplate,
+    updateMatch,
+    deletePlayer,
     fetchMatches,
+    fetchByPlayerId,
+    fetchByLocationId,
+    createLocation,
+    createMatch,
+    createPlayer,
   }
 }
 const facade = apiFacade();

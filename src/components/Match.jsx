@@ -1,9 +1,6 @@
-import { React ,useState, useEffect } from 'react'
-import { Link, Outlet, NavLink } from "react-router-dom";
-import facade from "../apiFacade";
-import "../styles/Matches.css";
+import React from 'react'
 
-const Matches = ({loggedIn, isUser, setIsUser}) => {
+const Match = ({loggedIn, isUser, setIsUser}) => {
     const [matches, setMatches] = useState([])
 
     useEffect(() =>{
@@ -21,8 +18,6 @@ const Matches = ({loggedIn, isUser, setIsUser}) => {
      
           }
     })
-
-
 
   return (
     <div>
@@ -53,4 +48,4 @@ const Matches = ({loggedIn, isUser, setIsUser}) => {
   )
 }
 
-export default Matches
+export default Match
