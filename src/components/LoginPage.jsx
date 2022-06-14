@@ -21,17 +21,19 @@ function LogIn({ login, error, creatingUser }) {
     <div className="smaller-container">
       <div className="login-section">
         <h2>Log in</h2>
+        <div >
         <form onChange={onChange}>
           <input type="text" placeholder="User Name" id="username" />
           <input type="password" placeholder="Password" id="password" />
           <div style={{ color: "red" }}>{error}</div>
-          <button className="login-button" onClick={performLogin}>
+          <button className="button" onClick={performLogin}>
             Login
           </button>
-          <button className="login-button" onClick={creatingUser}>
+          <button className="button" onClick={creatingUser}>
             Create
           </button>
         </form>
+        </div>
       </div>
     </div>
   );

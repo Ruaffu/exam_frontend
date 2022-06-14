@@ -3,6 +3,7 @@ import facade from "../apiFacade";
 import { useState, useEffect } from "react";
 import Unauthorized from "./Unauthorized";
 import "../styles/Matches.css";
+import { NavLink } from "react-router-dom";
 
 const DeletePlayer = ({ isAdmin, setIsAdmin }) => {
   const [player, setPlayer] = useState("");
@@ -33,6 +34,9 @@ const DeletePlayer = ({ isAdmin, setIsAdmin }) => {
     <div>
       {isAdmin ? (
         <div>
+             <NavLink className="button" to="/admin">
+                Back
+              </NavLink>
           <h2 className="center-text book-text">Delete Player</h2>
           <div className="input-section">
             <form>

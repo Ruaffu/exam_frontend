@@ -2,6 +2,7 @@ import React from "react";
 import facade from "../apiFacade";
 import { useState, useEffect } from "react";
 import Unauthorized from "./Unauthorized";
+import { NavLink } from "react-router-dom";
 
 const CreateMatch = ({ isAdmin, setIsAdmin }) => {
   const [matchInfo, setMatchInfo] = useState({
@@ -36,6 +37,9 @@ const CreateMatch = ({ isAdmin, setIsAdmin }) => {
     <div>
       {isAdmin ? (
         <div>
+             <NavLink className="button" to="/admin">
+                Back
+              </NavLink>
           <h2 className="center-text book-text">Create Match</h2>
           <div className="input-section">
             <form>

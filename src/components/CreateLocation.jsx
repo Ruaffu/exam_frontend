@@ -2,6 +2,7 @@ import React from "react";
 import facade from "../apiFacade";
 import { useState, useEffect } from "react";
 import Unauthorized from "./Unauthorized";
+import { NavLink } from "react-router-dom";
 
 const CreateLocation = ({ isAdmin, setIsAdmin }) => {
   const [locationInfo, setLocationInfo] = useState({
@@ -35,6 +36,9 @@ const CreateLocation = ({ isAdmin, setIsAdmin }) => {
     <div>
       {isAdmin ? (
         <div>
+              <NavLink className="button" to="/admin">
+                Back
+              </NavLink>
           <h2 className="center-text book-text">Create Location</h2>
           <div className="input-section">
             <form>

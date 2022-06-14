@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import facade from "../apiFacade";
 import Unauthorized from "./Unauthorized";
+import "../styles/Matches.css";
 
 const Admin = ({ isAdmin, setIsAdmin }) => {
   useEffect(() => {
@@ -19,8 +20,8 @@ const Admin = ({ isAdmin, setIsAdmin }) => {
   return (
     <div>
       {isAdmin ? (
-        <div>
-          <h1>Admin page</h1>
+        <div className="input-section">
+          <h1 className="center-text book-text">Admin page</h1>
           <div className="login">
             <li>
               <NavLink className="button" to="/">
