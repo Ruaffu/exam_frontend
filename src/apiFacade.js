@@ -49,6 +49,11 @@ function apiFacade() {
     return fetch(URL + "/api/cat/cat", options).then(handleHttpErrors);
   }
 
+  const fetchMatches= () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(URL + "/api/matches/all", options).then(handleHttpErrors);
+  }
+
   const create = (username, password) => {
     const options = makeOptions("POST", true, { userName: username, userPass: password }); //True add's the token
     console.log(username + " " + password);
@@ -99,6 +104,7 @@ function apiFacade() {
     decodeToken,
     updatetemplate,
     deleteTemplate,
+    fetchMatches,
   }
 }
 const facade = apiFacade();

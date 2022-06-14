@@ -9,12 +9,14 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Admin from "./components/Admin";
 import Unauthorized from "./components/Unauthorized";
+import Matches from "./components/Matches";
 
 export default function App() {
 
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   return (
     <div>
@@ -25,6 +27,7 @@ export default function App() {
         </Route>
         <Route path="login" element={<LoginPage loggedIn={loggedIn} setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/>} />
         <Route path="admin" element={<Admin isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>}/>
+        <Route path="matches" element={<Matches loggedIn={loggedIn} isUser={isUser} setIsUser={setIsUser}/>} />
         <Route path="unauthorized" element={<Unauthorized/>} />
         <Route path="*" element={<NoMatch/>} />
     </Routes>

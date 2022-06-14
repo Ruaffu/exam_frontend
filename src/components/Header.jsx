@@ -18,6 +18,8 @@ const Header = () => {
         <nav>
           <div className='left'>
           <NavLink  to="/">Home</NavLink>
+          <NavLink  to="/matches">All Matches</NavLink>
+
           {
             facade.getToken() != undefined && facade.decodeToken().roles  == "admin"  &&
             <NavLink  to="/admin">Admin page</NavLink>
