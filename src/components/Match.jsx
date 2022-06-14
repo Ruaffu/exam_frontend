@@ -1,10 +1,14 @@
-import React from 'react'
+import { React ,useState, useEffect } from 'react'
+import { Link, Outlet, NavLink } from "react-router-dom";
+import facade from "../apiFacade";
+import "../styles/Matches.css";
 
 const Match = ({loggedIn, isUser, setIsUser}) => {
     const [matches, setMatches] = useState([])
+    const [player, setPlayer] = useState('')
 
     useEffect(() =>{
-        facade.fetchMatches().then(data => setMatches(data));
+        
         if (facade.getToken() != undefined) {
         
         
@@ -19,9 +23,34 @@ const Match = ({loggedIn, isUser, setIsUser}) => {
           }
     })
 
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setPlayer({...player,[name]: value });
+      };
+
+     
+
+    const getMatch = (e) =>{
+        e.preventDefault()
+        facade.fetchByPlayerId(player.id).then(data => setMatches(data))
+    }
+
+    const getMatchLo = (e) =>{
+        e.preventDefault()
+        facade.fetchByLocationId(player.id).then(data => setMatches(data))
+    }
+
   return (
     <div>
           <h1 className="center-text book-text">Matches</h1>
+          <div className='input-section'>
+          <input name='id' type="text" placeholder="player id" onChange={handleChange}></input>
+          <button className='button' onClick={getMatch} type="submit" >Find</button>
+
+          <input name='id' type="text" placeholder="Location id" onChange={handleChange}></input>
+          <button className='button' onClick={getMatchLo} type="submit" >Find</button>
+          </div>
         {isUser?
 
      <div className='card-list'> 

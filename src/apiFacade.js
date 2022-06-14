@@ -73,6 +73,7 @@ function apiFacade() {
 
   const createMatch = (matchInfo) => {
     const options = makeOptions("POST", true, matchInfo); //True add's the token
+    console.log(matchInfo);
     return fetch(URL + "/api/admin/match", options)
       .then(handleHttpErrors)
       .then(res => { setToken(res.token) })
