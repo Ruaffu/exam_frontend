@@ -17,13 +17,13 @@ const Matches = ({ loggedIn, isUser, setIsUser }) => {
         setIsUser(false);
       }
     }
-  });
+  },[]);
 
   return (
     <div>
       {isUser ? (
         <>
-          <h1 className="center-text book-text">Matches</h1>
+          <h1 className="center-text book-text">All Matches</h1>
           <div className="card-list">
             {matches.map((match) => (
               <div className="card-container" key={match.id}>

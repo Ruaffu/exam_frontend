@@ -9,7 +9,7 @@ const CreateLocation = ({ isAdmin, setIsAdmin }) => {
     address: "",
     city: "",
     condition: "",
-  });
+  },[]);
 
   useEffect(() => {
     if (facade.getToken() != undefined) {

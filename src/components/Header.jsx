@@ -19,6 +19,8 @@ const Header = () => {
           <div className="left">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/matches">All Matches</NavLink>
+            <NavLink to="/locations">All Locations</NavLink>
+            <NavLink to="/players">All Players</NavLink>
             <NavLink to="/match">Matches by id</NavLink>
 
             {facade.getToken() != undefined &&

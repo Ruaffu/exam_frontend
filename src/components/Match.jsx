@@ -17,7 +17,7 @@ const Match = ({ loggedIn, isUser, setIsUser }) => {
         setIsUser(false);
       }
     }
-  });
+  },[]);
 
   const handleChange = (e) => {
     const name = e.target.name;

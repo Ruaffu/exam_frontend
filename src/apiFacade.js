@@ -54,6 +54,16 @@ function apiFacade() {
     return fetch(URL + "/api/matches/all", options).then(handleHttpErrors);
   }
 
+  const fetchLocations= () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(URL + "/api/matches/locations", options).then(handleHttpErrors);
+  }
+
+  const fetchPlayers= () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(URL + "/api/matches/players", options).then(handleHttpErrors);
+  }
+
   const fetchByPlayerId = (id) => {
     const options = makeOptions("GET", true); //True add's the token
     return fetch(URL + `/api/matches/${id}/play`, options).then(handleHttpErrors);
@@ -101,6 +111,13 @@ function apiFacade() {
       .then(res => { setToken(res.token) })
   }
 
+  const connectMatch = (ids) => {
+    const options = makeOptions("PUT", true); //True add's the token
+    return fetch(URL + `/api/admin/${ids.matchId}/connect/${ids.locationId}`, options)
+      .then(handleHttpErrors)
+      .then(res => { setToken(res.token) })
+  }
+
   const deletePlayer = (id) => {
     const options = makeOptions("DELETE", true); //True add's the token
     return fetch(URL + `/api/admin/${id}/delete`, options).then(handleHttpErrors);
@@ -141,6 +158,9 @@ function apiFacade() {
     createLocation,
     createMatch,
     createPlayer,
+    connectMatch,
+    fetchLocations,
+    fetchPlayers,
   }
 }
 const facade = apiFacade();

@@ -16,6 +16,9 @@ import CreateMatch from "./components/CreateMatch";
 import CreatePlayers from "./components/CreatePlayers";
 import UpdateMatch from "./components/UpdateMatch";
 import DeletePlayer from "./components/DeletePlayer";
+import Connect from "./components/Connect";
+import Locations from "./components/Locations";
+import Players from "./components/Players";
 
 export default function App() {
 
@@ -31,7 +34,7 @@ export default function App() {
     <Routes>
         <Route path="/" element={<Home/>}>
         </Route>
-        <Route path="login" element={<LoginPage loggedIn={loggedIn} setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/>} />
+        <Route path="login" element={<LoginPage loggedIn={loggedIn} setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin} setIsUser={setIsUser}/>} />
         <Route path="admin" element={<Admin isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>}/>
         <Route path="matches" element={<Matches loggedIn={loggedIn} isUser={isUser} setIsUser={setIsUser}/>} />
         <Route path="match" element={<Match loggedIn={loggedIn} isUser={isUser} setIsUser={setIsUser}/>} />
@@ -39,7 +42,10 @@ export default function App() {
         <Route path="creatematch" element={<CreateMatch isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
         <Route path="player" element={<CreatePlayers isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
         <Route path="update" element={<UpdateMatch isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
+        <Route path="connect" element={<Connect isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
         <Route path="delete" element={<DeletePlayer isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
+        <Route path="locations" element={<Locations isUser={isUser} setIsUser={setIsUser}/>} />
+        <Route path="players" element={<Players isUser={isUser} setIsUser={setIsUser}/>} />
         <Route path="unauthorized" element={<Unauthorized/>} />
         <Route path="*" element={<NoMatch/>} />
     </Routes>

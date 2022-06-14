@@ -15,7 +15,7 @@ const Admin = ({ isAdmin, setIsAdmin }) => {
         setIsAdmin(false);
       }
     }
-  });
+  },[]);
 
   return (
     <div>
@@ -46,6 +46,11 @@ const Admin = ({ isAdmin, setIsAdmin }) => {
             <li>
               <NavLink className="button" to="/update">
                 Update Match
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="button" to="/connect">
+                Connect Match
               </NavLink>
             </li>
             <li>

@@ -16,7 +16,7 @@ const DeletePlayer = ({ isAdmin, setIsAdmin }) => {
         setIsAdmin(false);
       }
     }
-  });
+  },[]);
 
   const handleChange = (e) => {
     const name = e.target.name;
