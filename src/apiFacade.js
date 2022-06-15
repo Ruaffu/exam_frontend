@@ -123,6 +123,16 @@ function apiFacade() {
     return fetch(URL + `/api/admin/${id}/delete`, options).then(handleHttpErrors);
   }
 
+  const deleteLocation = (id) => {
+    const options = makeOptions("DELETE", true); //True add's the token
+    return fetch(URL + `/api/admin/${id}/delete/location`, options).then(handleHttpErrors);
+  }
+
+  const deleteMatch = (id) => {
+    const options = makeOptions("DELETE", true); //True add's the token
+    return fetch(URL + `/api/admin/${id}/delete/location`, options).then(handleHttpErrors);
+  }
+
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -161,6 +171,8 @@ function apiFacade() {
     connectMatch,
     fetchLocations,
     fetchPlayers,
+    deleteLocation,
+    deleteMatch,
   }
 }
 const facade = apiFacade();

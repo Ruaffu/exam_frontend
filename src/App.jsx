@@ -19,6 +19,8 @@ import DeletePlayer from "./components/DeletePlayer";
 import Connect from "./components/Connect";
 import Locations from "./components/Locations";
 import Players from "./components/Players";
+import DeleteMatch from "./components/DeleteMatch";
+import DeleteLocation from "./components/DeleteLocation";
 
 export default function App() {
 
@@ -44,6 +46,8 @@ export default function App() {
         <Route path="update" element={<UpdateMatch isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
         <Route path="connect" element={<Connect isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
         <Route path="delete" element={<DeletePlayer isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
+        <Route path="deletem" element={<DeleteMatch isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
+        <Route path="deletel" element={<DeleteLocation isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>} />
         <Route path="locations" element={<Locations isUser={isUser} setIsUser={setIsUser}/>} />
         <Route path="players" element={<Players isUser={isUser} setIsUser={setIsUser}/>} />
         <Route path="unauthorized" element={<Unauthorized/>} />

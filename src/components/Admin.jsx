@@ -58,6 +58,16 @@ const Admin = ({ isAdmin, setIsAdmin }) => {
                 Delete player
               </NavLink>
             </li>
+            <li>
+              <NavLink className="button" to="/deletem">
+                Delete Match
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="button" to="/deletel">
+                Delete Location
+              </NavLink>
+            </li>
           </div>
         </div>
       ) : (
